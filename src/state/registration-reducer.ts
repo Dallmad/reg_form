@@ -66,6 +66,5 @@ export type UserType = {
 	email: string
 	nationality: string
 	birthDate: string
-	gender: string
 	password: string
 }

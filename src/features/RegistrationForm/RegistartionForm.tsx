@@ -5,24 +5,28 @@ import {AppRootStateType, useTypedDispatch} from '../../state/store'
 import {useSelector} from 'react-redux'
 import s from './RegistrationForm.module.scss'
 
-export const RegistartionForm = () => {
+export const RegistrationForm = () => {
 
 	const dispatch = useTypedDispatch()
 
 	const error = useSelector<AppRootStateType, string>(state => state.registration.error)
 	const isLoading = useSelector<AppRootStateType, boolean>(state => state.registration.isLoading)
-	/*const success = useSelector<AppRootStateType, boolean>(state => state.loading.isSuccess)*/
 
 	const [inputValues, setInputValue] = useState<UserType>({
 		id: v1(),
 		firstName: '',
 		lastName: '',
 		email: '',
-		nationality: '',
+		nationality: 'American',
 		birthDate: '',
-		gender: '',
 		password: ''
 	})
+	console.log(inputValues)
+
+	const genderArr =['Male','Female']
+	const selectDate = ['American','Belarus','Frenchman']
+
+	const [gender, setGender] = useState<string>(genderArr[0])
 
 	const [validation, setValidation] = useState<ValidationType>({
 		firstAndLastName: '',
@@ -32,11 +36,12 @@ export const RegistartionForm = () => {
 		message: '',
 	})
 
-	//const [disable, setDisable] = useState<boolean>(false)
-
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
 		const {name, value} = e.target
 		setInputValue({...inputValues, [name]: value})
+	}
+	const onChangeRadio = (e: ChangeEvent<HTMLInputElement>) => {
+		setGender(e.currentTarget.value)
 	}
 
 	const checkValidation = () => {
@@ -72,35 +77,18 @@ export const RegistartionForm = () => {
 		} else {
 			errors.message = ''
 		}
-		setValidation(errors)
+		//setValidation(errors)
 	}
 
-	/*	const newForm = {
-			id: v1(),
-			firstAndLastName: '',
-			email: '',
-			phone: '',
-			birthDate: '',
-			message: '',
-		}*/
 	useEffect(() => {
-		checkValidation()
+		//checkValidation()
 		if (isLoading
 			|| error
 			|| validation.message
 			|| validation.email
 			|| validation.firstAndLastName
 			|| validation.phone) {
-			//setDisable(true)
-		} //else setDisable(false)
-		/*if (success) {
-			const timer = setTimeout(() => {
-				//dispatch(successAC(false))
-				dispatch(loading(false))
-				setInputValue(newMessage)
-			}, 1500)
-			return () => clearTimeout(timer)
-		}*/
+		}
 	}, [, inputValues.email, isLoading, error,
 		validation.message, validation.email, validation.firstAndLastName, validation.phone
 	])
@@ -122,10 +110,11 @@ export const RegistartionForm = () => {
 				id="RegistrationForm"
 				onSubmit={handleSubmit}
 			>
+
 				<div className={s.box}>
+					<h4>First Name</h4>
                     <input
 											className={s.name}
-											placeholder="First Name"
 											name="firstName"
 											onChange={(e) => handleChange(e)}
 											value={inputValues.firstName}
@@ -135,9 +124,9 @@ export const RegistartionForm = () => {
 				</div>
 
 				<div className={s.box}>
+					<h4>Last Name</h4>
                     <input
 											className={s.name}
-											placeholder="Last Name"
 											name="lastName"
 											onChange={(e) => handleChange(e)}
 											value={inputValues.lastName}
@@ -146,17 +135,16 @@ export const RegistartionForm = () => {
 				</div>
 
 				<div className={s.box}>
+					<h4>Nationality</h4>
 					<select
 						className={s.name}
-						placeholder="Nationality"
 						name="nationality"
-						/*onChange={(e) => handleChange(e)}
-						value={inputValues.lastName}*/
-					/>
-					{validation.firstAndLastName && <p className={s.error}>{validation.firstAndLastName}</p>}
+						onChange={(e) => handleChange(e)}
+					>{selectDate.map((o,i)=>(<option key={o+i} value={o}>{o}</option>))}</select>
 				</div>
 
 				<div className={s.box}>
+					<h4>E-mail</h4>
 					<input
 						className={s.input}
 						type={'email'}
@@ -171,10 +159,10 @@ export const RegistartionForm = () => {
 
 
 				<div className={s.box}>
+					<h4>Date of Birth</h4>
 					<input
 						className={s.input}
 						type={'text'}
-						placeholder="Date of Birth"
 						onFocus={(e) => (e.target.type = 'date')}
 						onBlur={(e) => (e.target.type = 'text')}
 						name="birthDate"
@@ -185,35 +173,40 @@ export const RegistartionForm = () => {
 				</div>
 
 				<div className={s.box}>
-					<input
-						className={s.input}
-						type={'radio'}
-						placeholder="Gender"
-						name="gender"
-	/*					onChange={(e) => handleChange(e)}
-						value={inputValues.birthDate}*/
-					/>
-					{validation.birthDate && <p className={s.error}>{validation.birthDate}</p>}
+					<h4>Gender</h4>
+					{genderArr.map((o,i) => (
+						<label key={i}>
+							<input
+								className={s.input}
+								type={'radio'}
+								name='gender'
+								checked={o===gender}
+								value={o}
+								onChange={onChangeRadio}
+							/>
+							{o}
+						</label>
+					))}
 				</div>
 
 				<div className={s.box}>
+					<h4>Password</h4>
 					<input
 						className={s.input}
 						type={'password'}
-						placeholder="Password"
-						name="password"
+						name='password'
 						onChange={(e) => handleChange(e)}
-						value={inputValues.email}
+						value={inputValues.password}
 					/>
 					{validation.email && <p className={s.error}>{validation.email}</p>}
 				</div>
 
 				<div className={s.box}>
+					<h4>Confirm password</h4>
 					<input
 						className={s.input}
 						type={'password'}
-						placeholder="Confirm password"
-						name="confirmPassword"
+						name='confirmPassword'
 						onChange={(e) => handleChange(e)}
 						value={inputValues.email}
 					/>
