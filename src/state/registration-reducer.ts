@@ -3,7 +3,7 @@ import {api} from '../api/api'
 import {handleServerNetworkError} from '../utils/Error/error';
 
 const REGISTRATION = 'REGISTRATION'
-const SET_SUCCESS = 'SET_SUCCESS'
+//const SET_SUCCESS = 'SET_SUCCESS'
 const SET_ERROR = 'SET-ERROR'
 const LOADING = 'LOADING'
 
@@ -30,7 +30,7 @@ export const registrationReducer = (state: InitialStateType = initialState, acti
 // actions
 export const registration = () => ({type: REGISTRATION} as const)
 export const loading = (isLoading: boolean) => ({type: LOADING, isLoading} as const)
-export const successAC = (isSuccess: boolean) => ({type: SET_SUCCESS, isSuccess} as const)
+/*export const successAC = (isSuccess: boolean) => ({type: SET_SUCCESS, isSuccess} as const)*/
 export const setError = (error: string) => ({type: SET_ERROR, error} as const)
 
 // thunks
