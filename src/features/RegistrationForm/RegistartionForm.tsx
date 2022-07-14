@@ -23,8 +23,8 @@ export const RegistrationForm = () => {
 	})
 	console.log(inputValues)
 
-	const genderArr =['Male','Female']
-	const selectDate = ['American','Belarus','Frenchman']
+	const genderArr = ['Male', 'Female']
+	const selectDate = ['American', 'Belarus', 'Frenchman']
 
 	const [gender, setGender] = useState<string>(genderArr[0])
 
@@ -113,24 +113,24 @@ export const RegistrationForm = () => {
 
 				<div className={s.box}>
 					<h4>First Name</h4>
-                    <input
-											className={s.name}
-											name="firstName"
-											onChange={(e) => handleChange(e)}
-											value={inputValues.firstName}
-											autoFocus
-										/>
+					<input
+						className={s.name}
+						name="firstName"
+						onChange={(e) => handleChange(e)}
+						value={inputValues.firstName}
+						autoFocus
+					/>
 					{validation.firstAndLastName && <p className={s.error}>{validation.firstAndLastName}</p>}
 				</div>
 
 				<div className={s.box}>
 					<h4>Last Name</h4>
-                    <input
-											className={s.name}
-											name="lastName"
-											onChange={(e) => handleChange(e)}
-											value={inputValues.lastName}
-										/>
+					<input
+						className={s.name}
+						name="lastName"
+						onChange={(e) => handleChange(e)}
+						value={inputValues.lastName}
+					/>
 					{validation.firstAndLastName && <p className={s.error}>{validation.firstAndLastName}</p>}
 				</div>
 
@@ -140,7 +140,7 @@ export const RegistrationForm = () => {
 						className={s.name}
 						name="nationality"
 						onChange={(e) => handleChange(e)}
-					>{selectDate.map((o,i)=>(<option key={o+i} value={o}>{o}</option>))}</select>
+					>{selectDate.map((o, i) => (<option key={o + i} value={o}>{o}</option>))}</select>
 				</div>
 
 				<div className={s.box}>
@@ -174,13 +174,13 @@ export const RegistrationForm = () => {
 
 				<div className={s.box}>
 					<h4>Gender</h4>
-					{genderArr.map((o,i) => (
+					{genderArr.map((o, i) => (
 						<label key={i}>
 							<input
 								className={s.input}
 								type={'radio'}
-								name='gender'
-								checked={o===gender}
+								name="gender"
+								checked={o === gender}
 								value={o}
 								onChange={onChangeRadio}
 							/>
@@ -194,7 +194,7 @@ export const RegistrationForm = () => {
 					<input
 						className={s.input}
 						type={'password'}
-						name='password'
+						name="password"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.password}
 					/>
@@ -206,7 +206,7 @@ export const RegistrationForm = () => {
 					<input
 						className={s.input}
 						type={'password'}
-						name='confirmPassword'
+						name="confirmPassword"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.email}
 					/>
