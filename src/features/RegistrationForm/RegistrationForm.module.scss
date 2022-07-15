@@ -1,5 +1,6 @@
 @import '../../common/styles/variables';
 @import '../../common/styles/mixins';
+//image arrow '../../assets/images/Arrow.svg';
 
 .container {
 	padding: 0 21px;
@@ -13,7 +14,7 @@
 	}
 
 	.second_title {
-	margin: 0 0 4px 0;
+		margin: 0 0 4px 0;
 	}
 
 	.form {
@@ -32,19 +33,43 @@
 			margin: 0 15px 0 0;
 		}
 
+		select {
+			border: none;
+			border-bottom: 0.7px solid $backgroundColor;
+			outline: none;
+			@include text(16px, 14px, 400);
+			color: $textColor;
+			background: url('../../assets/images/Arrow.svg') no-repeat;
+			-webkit-appearance: none;
+			background-position-x: 100%;
+			background-position-y: 50%;
+			padding-bottom: 5.6px;
+		}
 
 		.box {
 
 		}
 
-		.select {
-			border: none;
-			border-bottom: 0.7px solid $backgroundColor;
-			outline: none;
+		.select_nationality {
 			width: 234.5px;
-			@include text(16px, 14px, 400);
-			color: $textColor;
-			padding-bottom: 5.6px;
+
+
+		}
+
+		.box_date {
+			//width: 234.5px;
+
+			.select_date_day {
+				width: 56px;
+				margin-right: 9.8px;
+			}
+			.select_date_month {
+				width: 91px;
+				margin-right: 9.8px;
+			}
+			.select_date_year {
+				width: 67.67px;
+			}
 		}
 
 		.box_gender {
@@ -55,7 +80,6 @@
 			.box_gender_radio {
 				display: flex;
 				flex-direction: row;
-				//width: auto;
 
 				.input {
 					-webkit-appearance: none;
@@ -82,14 +106,17 @@
 				}
 			}
 		}
+
 		.login {
 			@include text(15px, 13px, 400);
 			color: $fourthTextColor;
 			margin-top: 104.5px;
+
 			.link {
 				color: $sideBackgroundColor;
 			}
 		}
+
 		.submit {
 			width: 154px;
 			height: 32px;

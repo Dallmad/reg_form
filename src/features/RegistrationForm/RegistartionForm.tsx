@@ -24,7 +24,7 @@ export const RegistrationForm = () => {
 	//console.log(inputValues)
 
 	const genderArr = ['Male', 'Female']
-	const selectDate = ['American', 'Belarus', 'Frenchman']
+	const nationalityDate = ['American', 'Belarus', 'Frenchman']
 
 	const [gender, setGender] = useState<string>(genderArr[0])
 
@@ -134,10 +134,11 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>Nationality</h4>
 					<select
-						className={s.select}
+						className={s.select_nationality}
 						name="nationality"
 						onChange={(e) => handleChange(e)}
-					>{selectDate.map((o, i) => (<option key={o + i} value={o}>{o}</option>))}</select>
+					>{nationalityDate.map((o, i) => (<option key={o + i} value={o}>{o}</option>))}
+					</select>
 				</div>
 
 				<div className={s.box}>
@@ -156,16 +157,37 @@ export const RegistrationForm = () => {
 
 				<div className={s.box}>
 					<h4>Date of Birth</h4>
-					<input
-						className={s.input}
-						type={'text'}
-						onFocus={(e) => (e.target.type = 'date')}
-						onBlur={(e) => (e.target.type = 'text')}
-						name="birthDate"
+					<div className={s.box_date}>
+						<select
+							className={s.select_date_day}
+							name='day'
+							//onChange={(e) => handleChange(e)}
+						>
+							<option>21</option>
+						</select>
+
+						<select
+							className={s.select_date_month}
+							name='month'
+							//onChange={(e) => handleChange(e)}
+						>
+							<option>December</option>
+						</select>
+
+						<select
+							className={s.select_date_year}
+							name='year'
+							//onChange={(e) => handleChange(e)}
+						>
+							<option>1995</option>
+						</select>
+					</div>
+						{/*<input
+						className={s.input_date}
+						type={'date'}
 						onChange={(e) => handleChange(e)}
 						value={inputValues.birthDate}
-					/>
-					{validation.birthDate && <p className={s.error}>{validation.birthDate}</p>}
+					/>*/}
 				</div>
 
 				<div className={s.box}>
