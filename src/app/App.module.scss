@@ -12,7 +12,7 @@
 	background-color: $backgroundColor;
 
 	h2 {
-		@include text(26px, 22px, 400);
+		@include text(26px, 22px, 600);
 		color: $textColor;
 		letter-spacing: -0.46px;
 	}

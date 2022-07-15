@@ -23,12 +23,13 @@
 
 		input {
 			border: none;
-			border-bottom: 0.7px solid red;
+			border-bottom: 0.7px solid $backgroundColor;
 			outline: none;
 			width: 234.5px;
-			@include text(16.4px, 14px, 400);
+			@include text(16px, 14px, 400);
 			color: $textColor;
 			padding: 0 0 6.3px 0;
+			margin: 0 15px 0 0;
 		}
 
 
@@ -38,18 +39,18 @@
 
 		.select {
 			border: none;
-			border-bottom: 0.7px solid red;
+			border-bottom: 0.7px solid $backgroundColor;
 			outline: none;
 			width: 234.5px;
-			@include text(16.4px, 14px, 400);
+			@include text(16px, 14px, 400);
 			color: $textColor;
-			padding-bottom: 6.3px;
+			padding-bottom: 5.6px;
 		}
 
 		.box_gender {
 			display: flex;
 			flex-direction: row;
-			margin-left: -30px;
+			margin-left: -19px;
 
 			.box_gender_radio {
 				display: flex;
@@ -63,14 +64,15 @@
 					border: 0.7px solid $sideBackgroundColor;
 					border-radius: 50%;
 					outline: none;
-					margin: 5px 10px 0 30px;
+					margin: 5px 6px 0 19px;
+					padding: 0;
 
 					&:before {
 						content: '';
 						display: block;
-						width: 6px;
-						height: 6px;
-						margin: 20% auto;
+						width: 50%;
+						height: 50%;
+						margin: 25%;
 						border-radius: 50%;
 					}
 
@@ -79,6 +81,25 @@
 					}
 				}
 			}
+		}
+		.login {
+			@include text(15px, 13px, 400);
+			color: $fourthTextColor;
+			margin-top: 104.5px;
+			.link {
+				color: $sideBackgroundColor;
+			}
+		}
+		.submit {
+			width: 154px;
+			height: 32px;
+			background-color: $sideBackgroundColor;
+			color: $thirdTextColor;
+			@include text(18px, 14px, 400);
+			border: none;
+			cursor: pointer;
+			margin: 98.5px 0 0 80.5px;
+			padding: 0;
 		}
 	}
 }

@@ -211,9 +211,9 @@ export const RegistrationForm = () => {
 					{validation.email && <p className={s.error}>{validation.email}</p>}
 				</div>
 
-				<div>
+				<div className={s.login}>
 					Have an account?
-					<a href="">Login</a>
+					<a className={s.link}> Login</a>
 				</div>
 				<button type="submit" className={s.submit}>
 					Complete Signup
