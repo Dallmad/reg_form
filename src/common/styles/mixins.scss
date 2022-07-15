@@ -1,0 +1,13 @@
+@mixin text( $lineHeight, $fontSize, $fontWeight) {
+	font-family: 'WorkSans', sans-serif;
+	line-height: $lineHeight;
+	font-size: $fontSize;
+	font-weight: $fontWeight;
+}
+
+@mixin flex( $flexDirection, $justifyContent, $alignItems) {
+	display: flex;
+	flex-direction: $flexDirection;
+	justify-content: $justifyContent;
+	align-items: $alignItems;
+}

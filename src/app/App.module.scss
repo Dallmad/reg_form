@@ -1,0 +1,56 @@
+@import '../common/styles/variables';
+@import '../common/styles/mixins';
+
+*{
+
+}
+
+.app {
+	width: 800px;
+	height: 600px;
+	@include flex(row, center, center);
+	background-color: $backgroundColor;
+
+	h2 {
+		@include text(26px, 22px, 400);
+		color: $textColor;
+		letter-spacing: -0.46px;
+	}
+
+	h3 {
+		@include text(16px, 14px, 400);
+		color: $textColor;
+	}
+
+	h4 {
+		@include text(14px, 12px, 400);
+		color: $secondTextColor;
+		margin: 16px 0 5px 0;
+	}
+
+	.container {
+		width: 137.2px;
+		height: 480px;
+		background-color: $sideBackgroundColor;
+		position: relative;
+
+		.title {
+			//font-family: 'PT Sans';
+			position: absolute;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 49px;
+			line-height: 63px;
+			letter-spacing: 0.5px;
+			color: $thirdTextColor;
+			transform: rotate(-90deg);
+			white-space: nowrap;
+			bottom: 65px;
+			left: 11px;
+			margin: 0;
+		}
+	}
+	.box_registration {
+		@include flex(column, center, center);
+	}
+}

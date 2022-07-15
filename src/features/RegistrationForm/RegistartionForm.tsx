@@ -21,7 +21,7 @@ export const RegistrationForm = () => {
 		birthDate: '',
 		password: ''
 	})
-	console.log(inputValues)
+	//console.log(inputValues)
 
 	const genderArr = ['Male', 'Female']
 	const selectDate = ['American', 'Belarus', 'Frenchman']
@@ -99,12 +99,9 @@ export const RegistrationForm = () => {
 	}
 
 	return (
-		<>
-			<div>
-				Sign up
-			</div>
-			<h2>New user?</h2>
-			<span>Use the form below to create your account.</span>
+		<div className={s.container}>
+			<h2 className={s.title}>New user?</h2>
+			<h3 className={s.second_title}>Use the form below to create your account.</h3>
 			<form
 				className={s.form}
 				id="RegistrationForm"
@@ -137,7 +134,7 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>Nationality</h4>
 					<select
-						className={s.name}
+						className={s.select}
 						name="nationality"
 						onChange={(e) => handleChange(e)}
 					>{selectDate.map((o, i) => (<option key={o + i} value={o}>{o}</option>))}</select>
@@ -148,7 +145,6 @@ export const RegistrationForm = () => {
 					<input
 						className={s.input}
 						type={'email'}
-						placeholder="email"
 						name="email"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.email}
@@ -174,20 +170,22 @@ export const RegistrationForm = () => {
 
 				<div className={s.box}>
 					<h4>Gender</h4>
-					{genderArr.map((o, i) => (
-						<label key={i}>
-							<input
-								className={s.input}
-								type={'radio'}
-								name="gender"
-								checked={o === gender}
-								value={o}
-								onChange={onChangeRadio}
-							/>
-							{o}
-						</label>
-					))}
-				</div>
+					<div className={s.box_gender}>
+						{genderArr.map((o, i) => (
+							<label key={i} className={s.box_gender_radio}>
+
+								<input
+									className={s.input}
+									type={'radio'}
+									name="gender"
+									checked={o === gender}
+									value={o}
+									onChange={onChangeRadio}
+								/>
+								{o}
+							</label>))}
+					</div>
+					</div>
 
 				<div className={s.box}>
 					<h4>Password</h4>
@@ -221,7 +219,7 @@ export const RegistrationForm = () => {
 					Complete Signup
 				</button>
 			</form>
-		</>
+		</div>
 	)
 }
 

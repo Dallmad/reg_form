@@ -1,3 +1,84 @@
 @import '../../common/styles/variables';
 @import '../../common/styles/mixins';
 
+.container {
+	padding: 0 21px;
+
+	width: 485px;
+	height: 480px;
+	background-color: $thirdTextColor;
+
+	.title {
+		margin: 38.5px 0 0 0;
+	}
+
+	.second_title {
+	margin: 0 0 4px 0;
+	}
+
+	.form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+
+
+		input {
+			border: none;
+			border-bottom: 0.7px solid red;
+			outline: none;
+			width: 234.5px;
+			@include text(16.4px, 14px, 400);
+			color: $textColor;
+			padding: 0 0 6.3px 0;
+		}
+
+
+		.box {
+
+		}
+
+		.select {
+			border: none;
+			border-bottom: 0.7px solid red;
+			outline: none;
+			width: 234.5px;
+			@include text(16.4px, 14px, 400);
+			color: $textColor;
+			padding-bottom: 6.3px;
+		}
+
+		.box_gender {
+			display: flex;
+			flex-direction: row;
+			margin-left: -30px;
+
+			.box_gender_radio {
+				display: flex;
+				flex-direction: row;
+				//width: auto;
+
+				.input {
+					-webkit-appearance: none;
+					width: 12px;
+					height: 12px;
+					border: 0.7px solid $sideBackgroundColor;
+					border-radius: 50%;
+					outline: none;
+					margin: 5px 10px 0 30px;
+
+					&:before {
+						content: '';
+						display: block;
+						width: 6px;
+						height: 6px;
+						margin: 20% auto;
+						border-radius: 50%;
+					}
+
+					&:checked:before {
+						background: $sideBackgroundColor;
+					}
+				}
+			}
+		}
+	}
+}
