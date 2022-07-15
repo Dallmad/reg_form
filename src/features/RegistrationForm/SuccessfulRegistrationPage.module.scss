@@ -1,0 +1,30 @@
+@import '../../common/styles/variables';
+@import '../../common/styles/mixins';
+
+
+
+.container {
+	padding: 0 21px;
+	width: 485px;
+	height: 480px;
+	background-color: $thirdTextColor;
+	.title {
+		margin: 0;
+		padding: 216.5px 0 0 42.8px ;
+		white-space: nowrap;
+	}
+	.second_title {
+		margin: 0;
+		padding: 11px 0 0 42.8px ;
+	}
+
+	.login {
+		@include text('Work Sans',15px, 13px, 400);
+		color: $fourthTextColor;
+		margin-top: 152px;
+
+		.link {
+			color: $sideBackgroundColor;
+		}
+	}
+}

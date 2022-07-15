@@ -1,5 +1,5 @@
-@mixin text( $lineHeight, $fontSize, $fontWeight) {
-	font-family: 'WorkSans', sans-serif;
+@mixin text( $fontFamily,$lineHeight, $fontSize, $fontWeight) {
+	font-family: $fontFamily, sans-serif;
 	line-height: $lineHeight;
 	font-size: $fontSize;
 	font-weight: $fontWeight;

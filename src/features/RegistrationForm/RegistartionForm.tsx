@@ -161,7 +161,6 @@ export const RegistrationForm = () => {
 						<select
 							className={s.select_date_day}
 							name='day'
-							//onChange={(e) => handleChange(e)}
 						>
 							<option>21</option>
 						</select>
@@ -169,7 +168,6 @@ export const RegistrationForm = () => {
 						<select
 							className={s.select_date_month}
 							name='month'
-							//onChange={(e) => handleChange(e)}
 						>
 							<option>December</option>
 						</select>
@@ -177,17 +175,10 @@ export const RegistrationForm = () => {
 						<select
 							className={s.select_date_year}
 							name='year'
-							//onChange={(e) => handleChange(e)}
 						>
 							<option>1995</option>
 						</select>
 					</div>
-						{/*<input
-						className={s.input_date}
-						type={'date'}
-						onChange={(e) => handleChange(e)}
-						value={inputValues.birthDate}
-					/>*/}
 				</div>
 
 				<div className={s.box}>
@@ -234,8 +225,8 @@ export const RegistrationForm = () => {
 				</div>
 
 				<div className={s.login}>
-					Have an account?
-					<a className={s.link}> Login</a>
+					Have an account?{'\u00A0'}
+					<a href={''} className={s.link}>Login</a>
 				</div>
 				<button type="submit" className={s.submit}>
 					Complete Signup

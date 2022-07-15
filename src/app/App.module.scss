@@ -12,20 +12,20 @@
 	background-color: $backgroundColor;
 
 	h2 {
-		@include text(26px, 22px, 600);
+		@include text('Work Sans',26px, 22px, 600);
 		color: $textColor;
 		letter-spacing: -0.46px;
 	}
 
 	h3 {
-		@include text(16px, 14px, 400);
+		@include text('Work Sans',16px, 14px, 400);
 		color: $textColor;
 	}
 
 	h4 {
-		@include text(14px, 12px, 400);
+		@include text('Work Sans',14px, 12px, 400);
 		color: $secondTextColor;
-		margin: 16px 0 5px 0;
+		margin: 16px 0 0 0;
 	}
 
 	.container {
@@ -35,18 +35,15 @@
 		position: relative;
 
 		.title {
-			//font-family: 'PT Sans';
+			@include text('PT Sans', 63px, 49px, 400);
 			position: absolute;
 			font-style: normal;
-			font-weight: 400;
-			font-size: 49px;
-			line-height: 63px;
 			letter-spacing: 0.5px;
 			color: $thirdTextColor;
 			transform: rotate(-90deg);
 			white-space: nowrap;
-			bottom: 65px;
-			left: 11px;
+			bottom: 72px;
+			left: 20px;
 			margin: 0;
 		}
 	}
