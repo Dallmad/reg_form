@@ -152,7 +152,7 @@
 			padding: 0;
 			&:disabled {
 				animation: 0.8s ease-in-out 0s normal none infinite running trambling-animation;
-				animation-iteration-count: 1;
+				animation-iteration-count: 3;
 			}
 			@keyframes trambling-animation {
 				0%, 50%, 100% {

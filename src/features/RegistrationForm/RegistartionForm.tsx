@@ -4,6 +4,8 @@ import {createUserTC, UserType} from '../../state/registration-reducer'
 import {AppRootStateType, useTypedDispatch} from '../../state/store'
 import {useSelector} from 'react-redux'
 import s from './RegistrationForm.module.scss'
+import React from 'react';
+
 
 export const RegistrationForm = () => {
 
@@ -123,12 +125,12 @@ export const RegistrationForm = () => {
 	}, [isLoading,error,validation,inputValues])
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		/*checkValidation()
+		checkValidation()
 		if (!isErrorOnClick) {
 			dispatch(createUserTC(inputValues))
 			e.preventDefault()
-		}*/
-		e.preventDefault()
+		}
+
 	}
 
 	return (
@@ -288,7 +290,7 @@ export const RegistrationForm = () => {
 					Have an account?{'\u00A0'}
 					<a href={''} className={s.link}>Login</a>
 				</div>
-				<button type="submit" className={!isLoading ? s.submit: s.loading} disabled={isErrorOnClick||isLoading}>
+				<button type="submit" className={!isLoading ? s.submit: s.loading} disabled={!!error}>
 					Complete Signup
 				</button>
 			</form>
@@ -300,8 +302,6 @@ export const RegistrationForm = () => {
 type InputValuesType = UserType & {
 	confirmPassword: string
 }
-
-
 type ValidationType = {
 	firstName: string
 	lastName: string
