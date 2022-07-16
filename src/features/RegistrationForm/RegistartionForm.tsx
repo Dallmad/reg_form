@@ -12,34 +12,36 @@ export const RegistrationForm = () => {
 	const error = useSelector<AppRootStateType, string>(state => state.registration.error)
 	const isLoading = useSelector<AppRootStateType, boolean>(state => state.registration.isLoading)
 
-	const [inputValues, setInputValue] = useState<UserType>({
+	const genderArr = ['Male', 'Female']
+	const nationalityDate = ['American', 'Belarus', 'Frenchman']
+
+	const [inputValues, setInputValue] = useState<InputValuesType>({
 		id: v1(),
 		firstName: '',
 		lastName: '',
 		email: '',
 		nationality: 'American',
+		password: '',
 		birthDate: '',
-		password: ''
+		confirmPassword: ''
 	})
-	//console.log(inputValues)
-
-	const genderArr = ['Male', 'Female']
-	const nationalityDate = ['American', 'Belarus', 'Frenchman']
-
 	const [gender, setGender] = useState<string>(genderArr[0])
-
+	const [isErrorOnClick, setIsErrorOnClick] = useState<boolean>(false)
 	const [validation, setValidation] = useState<ValidationType>({
-		firstAndLastName: '',
+		firstName: '',
+		lastName: '',
 		email: '',
-		phone: '',
-		birthDate: '',
-		message: '',
+		password: '',
 	})
+	//console.log('isErrorOnClick:'+isErrorOnClick)
+	console.log(inputValues)
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
 		const {name, value} = e.target
 		setInputValue({...inputValues, [name]: value})
+		checkValidation()
 	}
+
 	const onChangeRadio = (e: ChangeEvent<HTMLInputElement>) => {
 		setGender(e.currentTarget.value)
 	}
@@ -47,54 +49,85 @@ export const RegistrationForm = () => {
 	const checkValidation = () => {
 		let errors = validation
 
-		//name validation
-		const nameCond = /^([A-Z]{3,30})\s([A-Z]{3,30})$/i
-		if (!inputValues.firstName.trim()) {
-			errors.firstAndLastName = 'You need to enter your first and last name'
-		} else if (!nameCond.test(inputValues.firstName)) {
-			errors.firstAndLastName = 'First and last names must contain from 3 to 30 Latin letters'
+		//first name validation
+		const nameCond = /^[a-zA-Z]{2,}$/i
+		if (inputValues.firstName) {
+			if (!inputValues.firstName.trim()) {
+				errors.firstName = 'You need to enter your first name'
+			} else if (!nameCond.test(inputValues.firstName)) {
+				errors.firstName = 'First name should contain from 2 letters'
+			} else {
+				errors.firstName = ''
+			}
 		} else {
-			errors.firstAndLastName = ''
+			errors.firstName = ''
+		}
+
+		//last name validation
+		if (inputValues.lastName) {
+			if (!inputValues.lastName.trim()) {
+				errors.lastName = 'You need to enter your last name'
+			} else if (!nameCond.test(inputValues.lastName)) {
+				errors.lastName = 'Last name should contain from 2 letters'
+			} else {
+				errors.lastName = ''
+			}
+		} else {
+			errors.lastName = ''
 		}
 
 		//email validation
 		const emailCond = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i
-		if (!inputValues.email.trim()) {
-			errors.email = 'Email is required'
-		} else if (!inputValues.email.match(emailCond)) {
-			errors.email = 'Please enter a valid email address'
-		} else {
-			errors.email = ''
-		}
+		if (inputValues.email !== '') {
+			if (!inputValues.email.trim()) {
+				errors.email = 'Email is required'
+			} else if (!inputValues.email.match(emailCond)) {
+				errors.email = 'Please enter a valid email address'
+			} else errors.email = ''
+		} else errors.email = ''
 
-		//message validation
-		if (!inputValues.password.trim()) {
-			errors.message = 'Message is required'
-		} else if (inputValues.password.length < 10) {
-			errors.message = 'Message must be longer than 10 characters'
-		} else if (inputValues.password.length > 300) {
-			errors.message = 'Message must be shorter than 300 characters'
-		} else {
-			errors.message = ''
+		//password validation
+		const passwordCond = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/i
+		if (inputValues.password !== '') {
+			if (!inputValues.password.trim()) {
+				errors.password = 'Password is required'
+			} else if (!inputValues.password.match(passwordCond)) {
+				errors.password = 'Password should consist of A-Z,a-z,0-9'
+			} else if (inputValues.password.length < 8) {
+				errors.password = 'Password should contain from 8 characters'
+			} else errors.password = ''
+		} else errors.password = ''
+
+		//confirm password validation
+		if (inputValues.password !== ''&& inputValues.confirmPassword!== '') {
+			if (inputValues.password !== inputValues.confirmPassword) {
+				errors.password = `Passwords don't match`
+			} else {
+				errors.password = ''
+			}
 		}
-		//setValidation(errors)
+		setValidation(errors)
 	}
 
 	useEffect(() => {
 		//checkValidation()
 		if (isLoading
 			|| error
-			|| validation.message
+			|| validation.password
 			|| validation.email
-			|| validation.firstAndLastName
-			|| validation.phone) {
-		}
-	}, [, inputValues.email, isLoading, error,
-		validation.message, validation.email, validation.firstAndLastName, validation.phone
-	])
+			|| validation.firstName
+			|| validation.lastName
+		) {
+			setIsErrorOnClick(true)
+		} else setIsErrorOnClick(false)
+	}, [isLoading,error,validation,inputValues])
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		dispatch(createUserTC(inputValues))
+		/*checkValidation()
+		if (!isErrorOnClick) {
+			dispatch(createUserTC(inputValues))
+			e.preventDefault()
+		}*/
 		e.preventDefault()
 	}
 
@@ -111,24 +144,34 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>First Name</h4>
 					<input
-						className={s.name}
+						className={validation.firstName && s.error}
 						name="firstName"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.firstName}
 						autoFocus
+						onBlur={() => checkValidation()}
 					/>
-					{validation.firstAndLastName && <p className={s.error}>{validation.firstAndLastName}</p>}
+					<span className={validation.firstName
+						? s.error_text
+						: s.error_text_invisible}
+					>
+						{validation.firstName}</span>
 				</div>
 
 				<div className={s.box}>
 					<h4>Last Name</h4>
 					<input
-						className={s.name}
+						className={validation.lastName && s.error}
 						name="lastName"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.lastName}
+						onBlur={() => checkValidation()}
 					/>
-					{validation.firstAndLastName && <p className={s.error}>{validation.firstAndLastName}</p>}
+					<span className={validation.lastName
+						? s.error_text
+						: s.error_text_invisible}
+					>
+						{validation.lastName}</span>
 				</div>
 
 				<div className={s.box}>
@@ -144,14 +187,20 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>E-mail</h4>
 					<input
-						className={s.input}
+						className={validation.email && s.error}
 						type={'email'}
 						name="email"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.email}
 						formNoValidate
+						onBlur={() => checkValidation()}
 					/>
-					{validation.email && <p className={s.error}>{validation.email}</p>}
+					<span className={validation.email
+						? s.error_text
+						: s.error_text_invisible}
+					>
+						{validation.email}
+					</span>
 				</div>
 
 
@@ -160,23 +209,29 @@ export const RegistrationForm = () => {
 					<div className={s.box_date}>
 						<select
 							className={s.select_date_day}
-							name='day'
+							name="day"
+							onChange={(e) => handleChange(e)}
 						>
 							<option>21</option>
+							<option>03</option>
 						</select>
 
 						<select
 							className={s.select_date_month}
-							name='month'
+							name="month"
+							onChange={(e) => handleChange(e)}
 						>
 							<option>December</option>
+							<option>August</option>
 						</select>
 
 						<select
 							className={s.select_date_year}
-							name='year'
+							name="year"
+							onChange={(e) => handleChange(e)}
 						>
 							<option>1995</option>
+							<option>1987</option>
 						</select>
 					</div>
 				</div>
@@ -188,7 +243,7 @@ export const RegistrationForm = () => {
 							<label key={i} className={s.box_gender_radio}>
 
 								<input
-									className={s.input}
+									className={s.input_gender}
 									type={'radio'}
 									name="gender"
 									checked={o === gender}
@@ -198,37 +253,42 @@ export const RegistrationForm = () => {
 								{o}
 							</label>))}
 					</div>
-					</div>
+				</div>
 
 				<div className={s.box}>
 					<h4>Password</h4>
 					<input
-						className={s.input}
-						type={'password'}
+						className={validation.password && s.error}
+						type={'text'}
 						name="password"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.password}
+						onBlurCapture={() => checkValidation()}
 					/>
-					{validation.email && <p className={s.error}>{validation.email}</p>}
+					<span className={validation.password
+						? s.error_text
+						: s.error_text_invisible}
+					>
+						{validation.password}
+					</span>
 				</div>
 
 				<div className={s.box}>
 					<h4>Confirm password</h4>
 					<input
 						className={s.input}
-						type={'password'}
+						type={'text'}
 						name="confirmPassword"
 						onChange={(e) => handleChange(e)}
-						value={inputValues.email}
+						value={inputValues.confirmPassword}
 					/>
-					{validation.email && <p className={s.error}>{validation.email}</p>}
 				</div>
 
 				<div className={s.login}>
 					Have an account?{'\u00A0'}
 					<a href={''} className={s.link}>Login</a>
 				</div>
-				<button type="submit" className={s.submit}>
+				<button type="submit" className={!isLoading ? s.submit: s.loading} disabled={isErrorOnClick||isLoading}>
 					Complete Signup
 				</button>
 			</form>
@@ -237,10 +297,14 @@ export const RegistrationForm = () => {
 }
 
 //types
+type InputValuesType = UserType & {
+	confirmPassword: string
+}
+
+
 type ValidationType = {
-	firstAndLastName: string,
-	email: string,
-	phone: string,
-	birthDate: string,
-	message: string,
+	firstName: string
+	lastName: string
+	email: string
+	password: string
 }

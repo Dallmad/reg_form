@@ -1,6 +1,5 @@
 @import '../../common/styles/variables';
 @import '../../common/styles/mixins';
-//image arrow '../../assets/images/Arrow.svg';
 
 .container {
 	padding: 0 21px;
@@ -14,46 +13,68 @@
 	}
 
 	.second_title {
-		margin: 0 0 4px 0;
+		margin: 0 0 20px 0;
 	}
 
 	.form {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 
-
 		input {
 			border: none;
 			border-bottom: 0.7px solid $backgroundColor;
 			outline: none;
 			width: 234.5px;
-			@include text('Work Sans',16px, 14px, 400);
+			@include text('Work Sans', 16px, 14px, 400);
 			color: $textColor;
 			padding: 0 0 6.3px 0;
-			margin: 0 15px 0 0;
+			margin: 5px 15px 16px 0;
+			&:-webkit-autofill{
+				-webkit-background-clip: text;
+			}
 		}
 
 		select {
 			border: none;
 			border-bottom: 0.7px solid $backgroundColor;
 			outline: none;
-			@include text('Work Sans',16px, 14px, 400);
+			@include text('Work Sans', 16px, 14px, 400);
 			color: $textColor;
 			background: url('../../assets/images/Arrow.svg') no-repeat;
 			-webkit-appearance: none;
 			background-position-x: 100%;
-			background-position-y: 50%;
+			background-position-y: 45%;
 			padding-bottom: 5.6px;
+			margin: 5px 0 16px 0;
 		}
 
 		.box {
+			display: flex;
+			flex-direction: column;
+		}
 
+		.error {
+			border: none;
+			border-bottom: 2px solid $errorColor;
+			outline: none;
+			width: 234.5px;
+			@include text('Work Sans', 16px, 14px, 400);
+			color: $errorTextColor;
+			padding: 0 0 6.3px 0;
+			margin: 5px 15px 0 0;
+		}
+		.error_text {
+			@include text('Work Sans', 12px, 12px, 400);
+			color: $errorTextColor;
+			letter-spacing: -0.02em;
+		}
+		.error_text_invisible {
+			opacity: 0;
+			cursor: default;
 		}
 
 		.select_nationality {
 			width: 234.5px;
-
-
 		}
 
 		.box_date {
@@ -62,10 +83,12 @@
 				width: 56px;
 				margin-right: 9.8px;
 			}
+
 			.select_date_month {
 				width: 91px;
 				margin-right: 9.8px;
 			}
+
 			.select_date_year {
 				width: 67.67px;
 			}
@@ -80,7 +103,8 @@
 				display: flex;
 				flex-direction: row;
 
-				.input {
+
+				.input_gender {
 					-webkit-appearance: none;
 					width: 12px;
 					height: 12px;
@@ -107,9 +131,9 @@
 		}
 
 		.login {
-			@include text('Work Sans',15px, 13px, 400);
+			@include text('Work Sans', 15px, 13px, 400);
 			color: $fourthTextColor;
-			margin-top: 109.5px;
+			margin-top: 89.5px;
 
 			.link {
 				color: $sideBackgroundColor;
@@ -121,11 +145,45 @@
 			height: 32px;
 			background-color: $sideBackgroundColor;
 			color: $thirdTextColor;
-			@include text('PT Sans',18px, 14px, 400);
+			@include text('PT Sans', 18px, 14px, 400);
 			border: none;
 			cursor: pointer;
-			margin: 98.5px 0 0 80.5px;
+			margin: 78.5px 0 0 80.5px;
 			padding: 0;
+			&:disabled {
+				animation: 0.8s ease-in-out 0s normal none infinite running trambling-animation;
+				animation-iteration-count: 1;
+			}
+			@keyframes trambling-animation {
+				0%, 50%, 100% {
+					transform: rotate(0deg);
+				}
+				10%, 30% {
+					transform: rotate(-10deg);
+				}
+				20%, 40% {
+					transform: rotate(10deg);
+				}
+			}
+		}
+		.loading {
+			width: 154px;
+			height: 32px;
+			background-color: $sideBackgroundColor;
+			@include text('PT Sans', 18px, 14px, 400);
+			border: none;
+			cursor: pointer;
+			margin: 78.5px 0 0 80.5px;
+			padding: 0;
+			color: $thirdTextColor;
+			background-position-x: 50%;
+			background-position-y: 50%;
+			animation: glowing 1500ms infinite;
+		}
+		@keyframes glowing {
+			0% { background-color: #2f3379; color: #7C7C7C}
+			50% { background-color: #606396; color: #252323}
+			100% { background-color: $sideBackgroundColor; color: $thirdTextColor}
 		}
 	}
 }
