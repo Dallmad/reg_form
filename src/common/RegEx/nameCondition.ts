@@ -1,0 +1,1 @@
+export const nameCondition = /^[a-zA-Z]{2,}$/i

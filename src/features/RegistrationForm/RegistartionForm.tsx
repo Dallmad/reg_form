@@ -5,6 +5,9 @@ import {AppRootStateType, useTypedDispatch} from '../../state/store'
 import {useSelector} from 'react-redux'
 import s from './RegistrationForm.module.scss'
 import React from 'react';
+import {nameCondition} from '../../common/RegEx/nameCondition'
+import {emailCondition} from '../../common/RegEx/emailCondition'
+import {passwordCondition} from '../../common/RegEx/passwordCondition'
 
 
 export const RegistrationForm = () => {
@@ -16,6 +19,7 @@ export const RegistrationForm = () => {
 
 	const genderArr = ['Male', 'Female']
 	const nationalityDate = ['American', 'Belarus', 'Frenchman']
+	
 
 	const [inputValues, setInputValue] = useState<InputValuesType>({
 		id: v1(),
@@ -41,7 +45,7 @@ export const RegistrationForm = () => {
 	const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
 		const {name, value} = e.target
 		setInputValue({...inputValues, [name]: value})
-		checkValidation()
+		//checkValidation()
 	}
 
 	const onChangeRadio = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,53 +56,44 @@ export const RegistrationForm = () => {
 		let errors = validation
 
 		//first name validation
-		const nameCond = /^[a-zA-Z]{2,}$/i
-		if (inputValues.firstName) {
+		//if (inputValues.firstName!=='') {
 			if (!inputValues.firstName.trim()) {
 				errors.firstName = 'You need to enter your first name'
-			} else if (!nameCond.test(inputValues.firstName)) {
+			} else if (!nameCondition.test(inputValues.firstName)) {
 				errors.firstName = 'First name should contain from 2 letters'
-			} else {
-				errors.firstName = ''
-			}
-		} else {
-			errors.firstName = ''
-		}
+			} else errors.firstName = ''
+		//} else errors.firstName = ''
+		
 
 		//last name validation
-		if (inputValues.lastName) {
+		//if (inputValues.lastName) {
 			if (!inputValues.lastName.trim()) {
 				errors.lastName = 'You need to enter your last name'
-			} else if (!nameCond.test(inputValues.lastName)) {
+			} else if (!nameCondition.test(inputValues.lastName)) {
 				errors.lastName = 'Last name should contain from 2 letters'
-			} else {
-				errors.lastName = ''
-			}
-		} else {
-			errors.lastName = ''
-		}
+			} else errors.lastName = ''
+		//} else errors.lastName = ''
+		
 
 		//email validation
-		const emailCond = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i
-		if (inputValues.email !== '') {
+		//if (inputValues.email !== '') {
 			if (!inputValues.email.trim()) {
 				errors.email = 'Email is required'
-			} else if (!inputValues.email.match(emailCond)) {
+			} else if (!inputValues.email.match(emailCondition)) {
 				errors.email = 'Please enter a valid email address'
 			} else errors.email = ''
-		} else errors.email = ''
+		//} else errors.email = ''
 
 		//password validation
-		const passwordCond = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/i
-		if (inputValues.password !== '') {
+		//if (inputValues.password !== '') {
 			if (!inputValues.password.trim()) {
 				errors.password = 'Password is required'
-			} else if (!inputValues.password.match(passwordCond)) {
+			} else if (!inputValues.password.match(passwordCondition)) {
 				errors.password = 'Password should consist of A-Z,a-z,0-9'
 			} else if (inputValues.password.length < 8) {
 				errors.password = 'Password should contain from 8 characters'
 			} else errors.password = ''
-		} else errors.password = ''
+		//} else errors.password = ''
 
 		//confirm password validation
 		if (inputValues.password !== ''&& inputValues.confirmPassword!== '') {
@@ -112,7 +107,7 @@ export const RegistrationForm = () => {
 	}
 
 	useEffect(() => {
-		//checkValidation()
+		checkValidation()
 		if (isLoading
 			|| error
 			|| validation.password
@@ -125,14 +120,16 @@ export const RegistrationForm = () => {
 	}, [isLoading,error,validation,inputValues])
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		checkValidation()
+		//checkValidation()
 		if (!isErrorOnClick) {
 			dispatch(createUserTC(inputValues))
 			e.preventDefault()
+			e.currentTarget.reset()
 		}
-
 	}
-
+	
+	const finalClassnameEmail = `${validation.email && s.error} ${inputValues.email.match(emailCondition) && s.valid_email}`
+	
 	return (
 		<div className={s.container}>
 			<h2 className={s.title}>New user?</h2>
@@ -153,9 +150,9 @@ export const RegistrationForm = () => {
 						autoFocus
 						onBlur={() => checkValidation()}
 					/>
-					<span className={validation.firstName &&s.error_text}>
+					{validation.firstName && <span className={s.error_text}>
 						{validation.firstName}
-					</span>
+					</span>}
 				</div>
 
 				<div className={s.box}>
@@ -167,9 +164,9 @@ export const RegistrationForm = () => {
 						value={inputValues.lastName}
 						onBlur={() => checkValidation()}
 					/>
-					<span className={validation.lastName &&s.error_text}>
+					{validation.lastName && <span className={s.error_text}>
 						{validation.lastName}
-					</span>
+					</span>}
 				</div>
 
 				<div className={s.box}>
@@ -185,7 +182,7 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>E-mail</h4>
 					<input
-						className={validation.email ? s.error : s.valid_email}
+						className={finalClassnameEmail}
 						type={'email'}
 						name="email"
 						onChange={(e) => handleChange(e)}
@@ -193,9 +190,9 @@ export const RegistrationForm = () => {
 						formNoValidate
 						onBlur={() => checkValidation()}
 					/>
-					<span className={validation.email &&s.error_text}>
+					{validation.email && <span className={s.error_text}>
 						{validation.email}
-					</span>
+					</span>}
 				</div>
 
 
@@ -260,9 +257,9 @@ export const RegistrationForm = () => {
 						value={inputValues.password}
 						onBlurCapture={() => checkValidation()}
 					/>
-					<span className={validation.password &&s.error_text}>
+					{validation.password && <span className={s.error_text}>
 						{validation.password}
-					</span>
+					</span>}
 				</div>
 
 				<div className={s.box}>
