@@ -2,8 +2,7 @@
 @import '../../common/styles/mixins';
 
 .container {
-	padding: 0 21px;
-
+	padding: 0 20.8px;
 	width: 485px;
 	height: 480px;
 	background-color: $thirdTextColor;
@@ -27,9 +26,10 @@
 			width: 234.5px;
 			@include text('Work Sans', 16px, 14px, 400);
 			color: $textColor;
-			padding: 0 0 6.3px 0;
+			padding: 0.6px 0 6.3px 0;
 			margin: 5px 15px 16px 0;
-			&:-webkit-autofill{
+
+			&:-webkit-autofill {
 				-webkit-background-clip: text;
 			}
 		}
@@ -43,7 +43,7 @@
 			background: url('../../assets/images/Arrow.svg') no-repeat;
 			-webkit-appearance: none;
 			background-position-x: 100%;
-			background-position-y: 45%;
+			background-position-y: 40%;
 			padding-bottom: 5.6px;
 			margin: 5px 0 16px 0;
 		}
@@ -51,6 +51,12 @@
 		.box {
 			display: flex;
 			flex-direction: column;
+		}
+
+		.valid_email {
+			background: url('../../assets/images/Tick.svg') no-repeat;
+			background-position-x: 100%;
+			background-position-y: 20%;
 		}
 
 		.error {
@@ -63,11 +69,13 @@
 			padding: 0 0 6.3px 0;
 			margin: 5px 15px 0 0;
 		}
+
 		.error_text {
 			@include text('Work Sans', 12px, 12px, 400);
 			color: $errorTextColor;
 			letter-spacing: -0.02em;
 		}
+
 		.error_text_invisible {
 			opacity: 0;
 			cursor: default;
@@ -97,11 +105,13 @@
 		.box_gender {
 			display: flex;
 			flex-direction: row;
-			margin-left: -19px;
+			margin: 2px 0 0 -19px;
+
 
 			.box_gender_radio {
 				display: flex;
 				flex-direction: row;
+				@include text('Work Sans', 16px, 14px, 400);
 
 
 				.input_gender {
@@ -111,7 +121,7 @@
 					border: 0.7px solid $sideBackgroundColor;
 					border-radius: 50%;
 					outline: none;
-					margin: 5px 6px 0 19px;
+					margin: 5px 5px 0 19px;
 					padding: 0;
 
 					&:before {
@@ -127,13 +137,22 @@
 						background: $sideBackgroundColor;
 					}
 				}
+
+				.gender_span {
+					margin-top: 3px;
+				}
 			}
+		}
+		.input_password {
+			@include text('Work Sans', 21px, 16px, 400);
+			letter-spacing: 1px;
+			padding-bottom: 1.3px;
 		}
 
 		.login {
-			@include text('Work Sans', 15px, 13px, 400);
+			@include text('Work Sans', 15px, 13px, 300);
 			color: $fourthTextColor;
-			margin-top: 89.5px;
+			margin-top: 88.5px;
 
 			.link {
 				color: $sideBackgroundColor;
@@ -148,12 +167,14 @@
 			@include text('PT Sans', 18px, 14px, 400);
 			border: none;
 			cursor: pointer;
-			margin: 78.5px 0 0 80.5px;
-			padding: 0;
+			margin: 81.5px 0 0 81.5px;
+			padding: 1px 1px 0 0;
+
 			&:disabled {
 				animation: 0.8s ease-in-out 0s normal none infinite running trambling-animation;
 				animation-iteration-count: 3;
 			}
+
 			@keyframes trambling-animation {
 				0%, 50%, 100% {
 					transform: rotate(0deg);
@@ -166,6 +187,7 @@
 				}
 			}
 		}
+
 		.loading {
 			width: 154px;
 			height: 32px;
@@ -173,17 +195,27 @@
 			@include text('PT Sans', 18px, 14px, 400);
 			border: none;
 			cursor: pointer;
-			margin: 78.5px 0 0 80.5px;
+			margin: 81.5px 0 0 81.5px;
 			padding: 0;
 			color: $thirdTextColor;
 			background-position-x: 50%;
 			background-position-y: 50%;
 			animation: glowing 1500ms infinite;
 		}
+
 		@keyframes glowing {
-			0% { background-color: #2f3379; color: #7C7C7C}
-			50% { background-color: #606396; color: #252323}
-			100% { background-color: $sideBackgroundColor; color: $thirdTextColor}
+			0% {
+				background-color: #2f3379;
+				color: #7C7C7C
+			}
+			50% {
+				background-color: #606396;
+				color: #252323
+			}
+			100% {
+				background-color: $sideBackgroundColor;
+				color: $thirdTextColor
+			}
 		}
 	}
 }

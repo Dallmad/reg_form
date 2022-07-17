@@ -18,12 +18,12 @@
 	}
 
 	h3 {
-		@include text('Work Sans',16px, 14px, 400);
+		@include text('Work Sans',16px, 14px, 300);
 		color: $textColor;
 	}
 
 	h4 {
-		@include text('Work Sans',14px, 12px, 400);
+		@include text('Work Sans',14px, 12px, 300);
 		color: $secondTextColor;
 		margin:  0;
 	}

@@ -189,7 +189,7 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>E-mail</h4>
 					<input
-						className={validation.email && s.error}
+						className={validation.email ? s.error : s.valid_email}
 						type={'email'}
 						name="email"
 						onChange={(e) => handleChange(e)}
@@ -252,7 +252,7 @@ export const RegistrationForm = () => {
 									value={o}
 									onChange={onChangeRadio}
 								/>
-								{o}
+								<span className={s.gender_span}>{o}</span>
 							</label>))}
 					</div>
 				</div>
@@ -260,7 +260,7 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>Password</h4>
 					<input
-						className={validation.password && s.error}
+						className={validation.password ? s.error: s.input_password}
 						type={'text'}
 						name="password"
 						onChange={(e) => handleChange(e)}
@@ -276,9 +276,9 @@ export const RegistrationForm = () => {
 				</div>
 
 				<div className={s.box}>
-					<h4>Confirm password</h4>
+					<h4>Confirm Password</h4>
 					<input
-						className={s.input}
+						className={s.input_password}
 						type={'text'}
 						name="confirmPassword"
 						onChange={(e) => handleChange(e)}
