@@ -153,11 +153,9 @@ export const RegistrationForm = () => {
 						autoFocus
 						onBlur={() => checkValidation()}
 					/>
-					<span className={validation.firstName
-						? s.error_text
-						: s.error_text_invisible}
-					>
-						{validation.firstName}</span>
+					<span className={validation.firstName &&s.error_text}>
+						{validation.firstName}
+					</span>
 				</div>
 
 				<div className={s.box}>
@@ -169,11 +167,9 @@ export const RegistrationForm = () => {
 						value={inputValues.lastName}
 						onBlur={() => checkValidation()}
 					/>
-					<span className={validation.lastName
-						? s.error_text
-						: s.error_text_invisible}
-					>
-						{validation.lastName}</span>
+					<span className={validation.lastName &&s.error_text}>
+						{validation.lastName}
+					</span>
 				</div>
 
 				<div className={s.box}>
@@ -197,10 +193,7 @@ export const RegistrationForm = () => {
 						formNoValidate
 						onBlur={() => checkValidation()}
 					/>
-					<span className={validation.email
-						? s.error_text
-						: s.error_text_invisible}
-					>
+					<span className={validation.email &&s.error_text}>
 						{validation.email}
 					</span>
 				</div>
@@ -260,17 +253,14 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>Password</h4>
 					<input
-						className={validation.password ? s.error: s.input_password}
+						className={validation.password ? s.error_password: s.input_password}
 						type={'text'}
 						name="password"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.password}
 						onBlurCapture={() => checkValidation()}
 					/>
-					<span className={validation.password
-						? s.error_text
-						: s.error_text_invisible}
-					>
+					<span className={validation.password &&s.error_text}>
 						{validation.password}
 					</span>
 				</div>

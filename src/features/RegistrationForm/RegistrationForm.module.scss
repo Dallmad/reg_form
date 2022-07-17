@@ -8,7 +8,7 @@
 	background-color: $thirdTextColor;
 
 	.title {
-		margin: 38.5px 0 0 0;
+		margin: 39.5px 0 0 0;
 	}
 
 	.second_title {
@@ -28,6 +28,7 @@
 			color: $textColor;
 			padding: 0.6px 0 6.3px 0;
 			margin: 5px 15px 16px 0;
+			box-sizing: border-box;
 
 			&:-webkit-autofill {
 				-webkit-background-clip: text;
@@ -43,7 +44,7 @@
 			background: url('../../assets/images/Arrow.svg') no-repeat;
 			-webkit-appearance: none;
 			background-position-x: 100%;
-			background-position-y: 40%;
+			background-position-y: 35%;
 			padding-bottom: 5.6px;
 			margin: 5px 0 16px 0;
 		}
@@ -57,6 +58,8 @@
 			background: url('../../assets/images/Tick.svg') no-repeat;
 			background-position-x: 100%;
 			background-position-y: 20%;
+			padding: 0.6px 0 6.3px 0;
+			box-sizing: border-box;
 		}
 
 		.error {
@@ -66,7 +69,7 @@
 			width: 234.5px;
 			@include text('Work Sans', 16px, 14px, 400);
 			color: $errorTextColor;
-			padding: 0 0 6.3px 0;
+			padding: 0.6px 0 5px 0;
 			margin: 5px 15px 0 0;
 		}
 
@@ -74,11 +77,7 @@
 			@include text('Work Sans', 12px, 12px, 400);
 			color: $errorTextColor;
 			letter-spacing: -0.02em;
-		}
-
-		.error_text_invisible {
-			opacity: 0;
-			cursor: default;
+			margin-bottom: 4px;
 		}
 
 		.select_nationality {
@@ -143,11 +142,23 @@
 				}
 			}
 		}
+		.error_password {
+			border: none;
+			border-bottom: 2px solid $errorColor;
+			outline: none;
+			width: 234.5px;
+			@include text('Work Sans', 21px, 16px, 400);
+			letter-spacing: 1px;
+			color: $errorTextColor;
+			padding: 0.6px 0 0 0;
+			margin: 5px 15px 0 0;
+		}
 		.input_password {
 			@include text('Work Sans', 21px, 16px, 400);
 			letter-spacing: 1px;
 			padding-bottom: 1.3px;
 		}
+
 
 		.login {
 			@include text('Work Sans', 15px, 13px, 300);
