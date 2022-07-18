@@ -56,6 +56,18 @@
 		.box {
 			display: flex;
 			flex-direction: column;
+			animation: glowing_box 3000ms linear;
+		}
+		@keyframes glowing_box {
+			0% {
+				opacity: 0;
+			}
+			50% {
+				opacity: 0.5;
+			}
+			100% {
+				opacity: 1;
+			}
 		}
 
 		.valid_email {
