@@ -5,7 +5,10 @@
 	padding: 0 20.8px;
 	width: 485px;
 	height: 480px;
-	background-color: $thirdTextColor;
+	background: url('../../assets/images/Background.svg') no-repeat;
+	background-position-x: 100%;
+	background-position-y: 100%;
+
 
 	.title {
 		margin: 39.5px 0 0 0;
@@ -29,6 +32,7 @@
 			padding: 0.6px 0 6.3px 0;
 			margin: 5px 15px 16px 0;
 			box-sizing: border-box;
+			background: inherit;
 
 			&:-webkit-autofill {
 				-webkit-background-clip: text;

@@ -1,53 +1,53 @@
 @import '../common/styles/variables';
 @import '../common/styles/mixins';
 
-*{
-
-}
-
 .app {
-	width: 800px;
-	height: 600px;
-	@include flex(row, center, center);
-	background-color: $backgroundColor;
 
-	h2 {
-		@include text('Work Sans',26px, 22px, 600);
-		color: $textColor;
-		letter-spacing: -0.46px;
-	}
+		width: 800px;
+		height: 600px;
+		@include flex(row, center, center);
+		background-color: $backgroundFormColor;
 
-	h3 {
-		@include text('Work Sans',16px, 14px, 300);
-		color: $textColor;
-	}
 
-	h4 {
-		@include text('Work Sans',14px, 12px, 300);
-		color: $secondTextColor;
-		margin:  0;
-	}
+		h2 {
+			@include text('Work Sans',26px, 22px, 600);
+			color: $textColor;
+			letter-spacing: -0.46px;
+		}
 
-	.container {
-		width: 137.2px;
-		height: 480px;
-		background-color: $sideBackgroundColor;
-		position: relative;
+		h3 {
+			@include text('Work Sans',16px, 14px, 300);
+			color: $textColor;
+		}
 
-		.title {
-			@include text('PT Sans', 63px, 49px, 400);
-			position: absolute;
-			font-style: normal;
-			letter-spacing: 0.5px;
-			color: $thirdTextColor;
-			transform: rotate(-90deg);
-			white-space: nowrap;
-			bottom: 71px;
-			left: 20px;
-			margin: 0;
+		h4 {
+			@include text('Work Sans',14px, 12px, 300);
+			color: $secondTextColor;
+			margin:  0;
+		}
+
+		.container {
+			width: 137.2px;
+			height: 480px;
+			background-color: $sideBackgroundColor;
+			position: relative;
+
+			.title {
+				@include text('PT Sans', 63px, 49px, 400);
+				position: absolute;
+				font-style: normal;
+				letter-spacing: 0.5px;
+				color: $thirdTextColor;
+				transform: rotate(-90deg);
+				white-space: nowrap;
+				bottom: 71px;
+				left: 20px;
+				margin: 0;
+			}
+		}
+		.box_registration {
+			@include flex(column, center, center);
+			background-color: $thirdTextColor;
 		}
 	}
-	.box_registration {
-		@include flex(column, center, center);
-	}
-}
+
