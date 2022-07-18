@@ -184,25 +184,33 @@
 			cursor: pointer;
 			margin: 81.5px 0 0 81.5px;
 			padding: 1px 1px 0 0;
-
-			&:disabled {
-				animation: 0.8s ease-in-out 0s normal none infinite running trambling-animation;
-				animation-iteration-count: 3;
-			}
-
-			@keyframes trambling-animation {
-				0%, 50%, 100% {
-					transform: rotate(0deg);
-				}
-				10%, 30% {
-					transform: rotate(-10deg);
-				}
-				20%, 40% {
-					transform: rotate(10deg);
-				}
-			}
 		}
 
+		.error_submit {
+			width: 154px;
+			height: 32px;
+			background-color: $sideBackgroundColor;
+			color: $thirdTextColor;
+			@include text('PT Sans', 18px, 14px, 400);
+			border: none;
+			cursor: pointer;
+			margin: 81.5px 0 0 81.5px;
+			padding: 1px 1px 0 0;
+			&:active {animation: 0.1s ease-in-out 0s normal none infinite running trambling-animation;
+			animation-iteration-count: 2;}
+		}
+
+		@keyframes trambling-animation {
+			0%, 50%, 100% {
+				transform: rotate(0deg);
+			}
+			10%, 30% {
+				transform: rotate(-10deg);
+			}
+			20%, 40% {
+				transform: rotate(10deg);
+			}
+		}
 		.loading {
 			width: 154px;
 			height: 32px;

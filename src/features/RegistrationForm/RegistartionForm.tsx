@@ -33,6 +33,7 @@ export const RegistrationForm = () => {
 	})
 	const [gender, setGender] = useState<string>(genderArr[0])
 	const [isErrorOnClick, setIsErrorOnClick] = useState<boolean>(false)
+	const [disable, setDisable] = useState<boolean>(false)
 	const [validation, setValidation] = useState<ValidationType>({
 		firstName: '',
 		lastName: '',
@@ -88,10 +89,10 @@ export const RegistrationForm = () => {
 		if (inputValues.password !== '') {
 			if (!inputValues.password.trim()) {
 				errors.password = 'Password is required'
+			} else if (inputValues.password.length < 8) {
+				errors.password = 'Password should contain from 8 characters' 
 			} else if (!inputValues.password.match(passwordCondition)) {
 				errors.password = 'Password should consist of A-Z,a-z,0-9'
-			} else if (inputValues.password.length < 8) {
-				errors.password = 'Password should contain from 8 characters'
 			} else errors.password = ''
 		} else errors.password = ''
 
@@ -118,21 +119,23 @@ export const RegistrationForm = () => {
 			|| !inputValues.lastName
 			|| !inputValues.email
 			|| !inputValues.password
+			|| !inputValues.confirmPassword
 		) {
 			setIsErrorOnClick(true)
-		} else setIsErrorOnClick(false)
-	}, [isLoading,error,validation,inputValues])
+		} else {
+			setIsErrorOnClick(false) 
+			}
+	}, [isLoading,error,validation.firstName,validation.lastName,validation.email,validation.password,inputValues.firstName,inputValues.lastName,inputValues.email,inputValues.password,inputValues.confirmPassword])
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		checkValidation()
 		if (!isErrorOnClick) {
 			dispatch(createUserTC(inputValues))
 			e.preventDefault()
-			e.currentTarget.reset()
-		} else checkValidation()
+		} else e.preventDefault()
 	}
 	
 	const finalClassnameEmail = `${validation.email && s.error} ${inputValues.email.match(emailCondition) && s.valid_email}`
+	const finalClssnameButtonSubmit = error||isErrorOnClick ? `${s.error_submit}`:`${!isLoading ? s.submit: s.loading}`
 	
 	return (
 		<div className={s.container}>
@@ -259,7 +262,7 @@ export const RegistrationForm = () => {
 						name="password"
 						onChange={(e) => handleChange(e)}
 						value={inputValues.password}
-						onBlurCapture={() => checkValidation()}
+						onBlur={() => checkValidation()}
 					/>
 					{validation.password && <span className={s.error_text}>
 						{validation.password}
@@ -281,7 +284,7 @@ export const RegistrationForm = () => {
 					Have an account?{'\u00A0'}
 					<a href={''} className={s.link}>Login</a>
 				</div>
-				<button type="submit" className={!isLoading ? s.submit: s.loading} disabled={!!error}>
+				<button type="submit" className={finalClssnameButtonSubmit}>
 					Complete Signup
 				</button>
 			</form>
