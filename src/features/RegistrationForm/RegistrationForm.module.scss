@@ -9,7 +9,6 @@
 	background-position-x: 100%;
 	background-position-y: 100%;
 
-
 	.title {
 		margin: 39.5px 0 0 0;
 	}
@@ -56,8 +55,9 @@
 		.box {
 			display: flex;
 			flex-direction: column;
-			animation: glowing_box 3000ms linear;
+			animation: glowing_box 4000ms linear;
 		}
+
 		@keyframes glowing_box {
 			0% {
 				opacity: 0;
@@ -122,7 +122,6 @@
 			flex-direction: row;
 			margin: 2px 0 0 -19px;
 
-
 			.box_gender_radio {
 				display: flex;
 				flex-direction: row;
@@ -158,6 +157,7 @@
 				}
 			}
 		}
+
 		.error_password {
 			border: none;
 			border-bottom: 2px solid $errorColor;
@@ -169,6 +169,7 @@
 			padding: 0.6px 0 0 0;
 			margin: 5px 15px 0 0;
 		}
+
 		.input_password {
 			@include text('Work Sans', 21px, 16px, 400);
 			letter-spacing: 1px;
@@ -208,8 +209,11 @@
 			cursor: pointer;
 			margin: 81.5px 0 0 81.5px;
 			padding: 1px 1px 0 0;
-			&:active {animation: 0.1s ease-in-out 0s normal none infinite running trambling-animation;
-			animation-iteration-count: 2;}
+
+			&:active {
+				animation: 0.1s ease-in-out 0s normal none infinite running trambling-animation;
+				animation-iteration-count: 2;
+			}
 		}
 
 		@keyframes trambling-animation {
@@ -223,6 +227,7 @@
 				transform: rotate(10deg);
 			}
 		}
+
 		.loading {
 			width: 154px;
 			height: 32px;

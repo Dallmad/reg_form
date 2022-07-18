@@ -1,9 +1,9 @@
-import React from 'react';
-import {RegistrationForm} from '../features/RegistrationForm/RegistartionForm';
+import React from 'react'
+import {RegistrationForm} from '../features/RegistrationForm/RegistartionForm'
 import s from './App.module.scss'
-import {SuccessfulRegistrationPage} from '../features/RegistrationForm/SuccessfulRegistartionPage';
-import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../state/store';
+import {SuccessfulRegistrationPage} from '../features/RegistrationForm/SuccessfulRegistartionPage'
+import {useSelector} from 'react-redux'
+import {AppRootStateType} from '../state/store'
 
 export const App = () => {
 
@@ -27,8 +27,6 @@ export const App = () => {
 				}
 			</div>
 		</div>
-
-
 	)
 }
 

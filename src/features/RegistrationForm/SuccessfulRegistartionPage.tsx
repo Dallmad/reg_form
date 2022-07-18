@@ -1,10 +1,8 @@
-import s from './SuccessfulRegistrationPage.module.scss';
+import s from './SuccessfulRegistrationPage.module.scss'
 
 export const SuccessfulRegistrationPage = () => {
-
-
+	
 	return (
-
 		<div className={s.container}>
 			<h2 className={s.title}>
 				Thank You!

@@ -53,6 +53,7 @@
 				margin: 0;
 			}
 		}
+
 		.box_registration {
 			@include flex(column, center, center);
 			background-color: $thirdTextColor;

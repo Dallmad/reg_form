@@ -9,7 +9,6 @@ import {nameCondition} from '../../common/RegEx/nameCondition'
 import {emailCondition} from '../../common/RegEx/emailCondition'
 import {passwordCondition} from '../../common/RegEx/passwordCondition'
 
-
 export const RegistrationForm = () => {
 
 	const dispatch = useTypedDispatch()
@@ -20,7 +19,6 @@ export const RegistrationForm = () => {
 	const genderArr = ['Male', 'Female']
 	const nationalityDate = ['American', 'Belarus', 'Frenchman']
 	
-
 	const [inputValues, setInputValue] = useState<InputValuesType>({
 		id: v1(),
 		firstName: '',
@@ -53,7 +51,7 @@ export const RegistrationForm = () => {
 		let errors = validation
 
 		//first name validation
-		if (inputValues.firstName!=='') {
+		if (inputValues.firstName !== '') {
 			if (!inputValues.firstName.trim()) {
 				errors.firstName = 'You need to enter your first name'
 			} else if (!nameCondition.test(inputValues.firstName)) {
@@ -84,14 +82,14 @@ export const RegistrationForm = () => {
 			if (!inputValues.password.trim()) {
 				errors.password = 'Password is required'
 			} else if (inputValues.password.length < 8) {
-				errors.password = 'Password should contain from 8 characters' 
+				errors.password = 'Password should contain from 8 characters'
 			} else if (!inputValues.password.match(passwordCondition)) {
 				errors.password = 'Password should consist of A-Z,a-z,0-9'
 			} else errors.password = ''
 		} else errors.password = ''
 
 		//confirm password validation
-		if (inputValues.password !== ''&& inputValues.confirmPassword!== '') {
+		if (inputValues.password !== '' && inputValues.confirmPassword !== '') {
 			if (inputValues.password !== inputValues.confirmPassword) {
 				errors.password = `Passwords don't match`
 			} else {
@@ -117,9 +115,9 @@ export const RegistrationForm = () => {
 		) {
 			setIsErrorOnClick(true)
 		} else {
-			setIsErrorOnClick(false) 
-			}
-	}, [isLoading,error,validation.firstName,validation.lastName,validation.email,validation.password,inputValues.firstName,inputValues.lastName,inputValues.email,inputValues.password,inputValues.confirmPassword])
+			setIsErrorOnClick(false)
+		}
+	}, [isLoading, error, validation.firstName, validation.lastName, validation.email, validation.password, inputValues.firstName, inputValues.lastName, inputValues.email, inputValues.password, inputValues.confirmPassword])
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		if (!isErrorOnClick) {
@@ -127,10 +125,10 @@ export const RegistrationForm = () => {
 			e.preventDefault()
 		} else e.preventDefault()
 	}
-	
+
 	const finalClassNameEmail = `${validation.email && s.error} ${inputValues.email.match(emailCondition) && s.valid_email}`
-	const finalClssNameButtonSubmit = error||isErrorOnClick ? `${s.error_submit}`:`${!isLoading ? s.submit: s.loading}`
-	
+	const finalClssNameButtonSubmit = error || isErrorOnClick ? `${s.error_submit}` : `${!isLoading ? s.submit : s.loading}`
+
 	return (
 		<div className={s.container}>
 			<h2 className={s.title}>New user?</h2>
@@ -251,7 +249,7 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>Password</h4>
 					<input
-						className={validation.password ? s.error_password: s.input_password}
+						className={validation.password ? s.error_password : s.input_password}
 						type={'text'}
 						name="password"
 						onChange={(e) => handleChange(e)}

@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux'
 import {api} from '../api/api'
-import {handleServerNetworkError} from '../utils/error/error';
+import {handleServerNetworkError} from '../utils/error/error'
 
 const REGISTRATION = 'REGISTRATION'
 const SET_ERROR = 'SET-ERROR'

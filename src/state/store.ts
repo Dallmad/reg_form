@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
 import {applyMiddleware, combineReducers, createStore} from 'redux'
 import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
-import {RegistrationActionsType, registrationReducer} from './registration-reducer';
+import {RegistrationActionsType, registrationReducer} from './registration-reducer'
 
 const rootReducer = combineReducers({
 	registration: registrationReducer

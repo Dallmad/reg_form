@@ -1,5 +1,5 @@
 import {instance} from './instance'
-import {UserType} from '../state/registration-reducer';
+import {UserType} from '../state/registration-reducer'
 
 export const api = {
 	createUsers(data: UserType) {
