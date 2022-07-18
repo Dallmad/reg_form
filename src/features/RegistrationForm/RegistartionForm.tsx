@@ -33,20 +33,16 @@ export const RegistrationForm = () => {
 	})
 	const [gender, setGender] = useState<string>(genderArr[0])
 	const [isErrorOnClick, setIsErrorOnClick] = useState<boolean>(false)
-	const [disable, setDisable] = useState<boolean>(false)
 	const [validation, setValidation] = useState<ValidationType>({
 		firstName: '',
 		lastName: '',
 		email: '',
 		password: '',
 	})
-	//console.log('isErrorOnClick:'+isErrorOnClick)
-	console.log(inputValues)
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
 		const {name, value} = e.target
 		setInputValue({...inputValues, [name]: value})
-		//checkValidation()
 	}
 
 	const onChangeRadio = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +60,6 @@ export const RegistrationForm = () => {
 				errors.firstName = 'First name should contain from 2 letters'
 			} else errors.firstName = ''
 		} else errors.firstName = ''
-		
 
 		//last name validation
 		if (inputValues.lastName) {
@@ -74,7 +69,6 @@ export const RegistrationForm = () => {
 				errors.lastName = 'Last name should contain from 2 letters'
 			} else errors.lastName = ''
 		} else errors.lastName = ''
-		
 
 		//email validation
 		if (inputValues.email !== '') {
@@ -134,8 +128,8 @@ export const RegistrationForm = () => {
 		} else e.preventDefault()
 	}
 	
-	const finalClassnameEmail = `${validation.email && s.error} ${inputValues.email.match(emailCondition) && s.valid_email}`
-	const finalClssnameButtonSubmit = error||isErrorOnClick ? `${s.error_submit}`:`${!isLoading ? s.submit: s.loading}`
+	const finalClassNameEmail = `${validation.email && s.error} ${inputValues.email.match(emailCondition) && s.valid_email}`
+	const finalClssNameButtonSubmit = error||isErrorOnClick ? `${s.error_submit}`:`${!isLoading ? s.submit: s.loading}`
 	
 	return (
 		<div className={s.container}>
@@ -189,7 +183,7 @@ export const RegistrationForm = () => {
 				<div className={s.box}>
 					<h4>E-mail</h4>
 					<input
-						className={finalClassnameEmail}
+						className={finalClassNameEmail}
 						type={'email'}
 						name="email"
 						onChange={(e) => handleChange(e)}
@@ -284,7 +278,7 @@ export const RegistrationForm = () => {
 					Have an account?{'\u00A0'}
 					<a href={''} className={s.link}>Login</a>
 				</div>
-				<button type="submit" className={finalClssnameButtonSubmit}>
+				<button type="submit" className={finalClssNameButtonSubmit}>
 					Complete Signup
 				</button>
 			</form>
