@@ -2,28 +2,36 @@
 @import '../common/styles/mixins';
 
 .app {
-
 		width: 800px;
 		height: 600px;
 		@include flex(row, center, center);
 		background-color: $backgroundFormColor;
 
-
 		h2 {
 			@include text('Work Sans',26px, 22px, 600);
 			color: $textColor;
 			letter-spacing: -0.46px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 
 		h3 {
 			@include text('Work Sans',16px, 14px, 300);
 			color: $textColor;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 
 		h4 {
 			@include text('Work Sans',14px, 12px, 300);
 			color: $secondTextColor;
 			margin:  0;
+			width: 234.5px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 
 		.container {

@@ -56,36 +56,36 @@ export const RegistrationForm = () => {
 		let errors = validation
 
 		//first name validation
-		//if (inputValues.firstName!=='') {
+		if (inputValues.firstName!=='') {
 			if (!inputValues.firstName.trim()) {
 				errors.firstName = 'You need to enter your first name'
 			} else if (!nameCondition.test(inputValues.firstName)) {
 				errors.firstName = 'First name should contain from 2 letters'
 			} else errors.firstName = ''
-		//} else errors.firstName = ''
+		} else errors.firstName = ''
 		
 
 		//last name validation
-		//if (inputValues.lastName) {
+		if (inputValues.lastName) {
 			if (!inputValues.lastName.trim()) {
 				errors.lastName = 'You need to enter your last name'
 			} else if (!nameCondition.test(inputValues.lastName)) {
 				errors.lastName = 'Last name should contain from 2 letters'
 			} else errors.lastName = ''
-		//} else errors.lastName = ''
+		} else errors.lastName = ''
 		
 
 		//email validation
-		//if (inputValues.email !== '') {
+		if (inputValues.email !== '') {
 			if (!inputValues.email.trim()) {
 				errors.email = 'Email is required'
 			} else if (!inputValues.email.match(emailCondition)) {
 				errors.email = 'Please enter a valid email address'
 			} else errors.email = ''
-		//} else errors.email = ''
+		} else errors.email = ''
 
 		//password validation
-		//if (inputValues.password !== '') {
+		if (inputValues.password !== '') {
 			if (!inputValues.password.trim()) {
 				errors.password = 'Password is required'
 			} else if (!inputValues.password.match(passwordCondition)) {
@@ -93,7 +93,7 @@ export const RegistrationForm = () => {
 			} else if (inputValues.password.length < 8) {
 				errors.password = 'Password should contain from 8 characters'
 			} else errors.password = ''
-		//} else errors.password = ''
+		} else errors.password = ''
 
 		//confirm password validation
 		if (inputValues.password !== ''&& inputValues.confirmPassword!== '') {
@@ -114,18 +114,22 @@ export const RegistrationForm = () => {
 			|| validation.email
 			|| validation.firstName
 			|| validation.lastName
+			|| !inputValues.firstName
+			|| !inputValues.lastName
+			|| !inputValues.email
+			|| !inputValues.password
 		) {
 			setIsErrorOnClick(true)
 		} else setIsErrorOnClick(false)
 	}, [isLoading,error,validation,inputValues])
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-		//checkValidation()
+		checkValidation()
 		if (!isErrorOnClick) {
 			dispatch(createUserTC(inputValues))
 			e.preventDefault()
 			e.currentTarget.reset()
-		}
+		} else checkValidation()
 	}
 	
 	const finalClassnameEmail = `${validation.email && s.error} ${inputValues.email.match(emailCondition) && s.valid_email}`
