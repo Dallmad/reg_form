@@ -15,14 +15,12 @@ export const App = () => {
 				<div className={s.container}>
 					<h1 className={s.title}>Sign up</h1>
 				</div>
-				{!isRegistration &&
-					<div className={s.box_registration}>
-						<RegistrationForm/>
-					</div>
-				}
-				{isRegistration &&
+				{isRegistration ?
 					<div>
 						<SuccessfulRegistrationPage/>
+					</div> :
+					<div className={s.box_registration}>
+						<RegistrationForm/>
 					</div>
 				}
 			</div>
